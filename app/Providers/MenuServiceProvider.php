@@ -21,7 +21,7 @@ class MenuServiceProvider extends ServiceProvider
     $self = $this;  // simpan $this ke variabel lokal
 
     View::composer('*', function ($view) use ($self) {
-      $role = Auth::check() ? Auth::user()->getRoleNames()->first() : 'guest';
+      $role = Auth::check() ? (Auth::user()->getRoleNames()->first() ?? 'user') : 'guest';
       // dd($role);
 
       // Load menu JSON

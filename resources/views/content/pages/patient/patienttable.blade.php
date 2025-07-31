@@ -409,7 +409,8 @@
                         <li class="list-group-item d-flex justify-content-between"><strong>Tanggal Lahir:</strong> <span
                                 id="view-birth-date">-</span></li>
                         <li class="list-group-item d-flex justify-content-between"><strong>Status Perkawinan:</strong>
-                            <span id="view-marital-status">-</span></li>
+                            <span id="view-marital-status">-</span>
+                        </li>
                         <li class="list-group-item d-flex justify-content-between"><strong>Golongan Darah:</strong> <span
                                 id="view-blood-group">-</span></li>
                         <li class="list-group-item d-flex justify-content-between"><strong>Wilayah:</strong> <span

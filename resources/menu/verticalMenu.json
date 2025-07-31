@@ -12,7 +12,7 @@
     {
       "url": "#",
       "icon": "menu-icon tf-icons ti ti-user",
-      "name": "Admin",
+      "name": "admin",
       "slug": "admin",
       "role": [
         "admin"
@@ -86,6 +86,11 @@
           "url": "/dashboard/reports/packages",
           "name": "Package Reports",
           "slug": "reports-packages"
+        },
+        {
+          "url": "/dashboard/reports/service-report",
+          "name": "Service Reports",
+          "slug": "reports-services"
         }
       ]
     },
@@ -100,32 +105,22 @@
       ],
       "submenu": [
         {
-          "url": "/dashboard/invoice-bill/all",
+          "url": "/dashboard/invoice-bill/all-invoice-report",
           "name": "All Report",
           "slug": "invoice-bill-all-reports"
         },
         {
-          "url": "/dashboard/invoice-bill/service-reports",
-          "name": "Service Reports",
-          "slug": "invoice-bill-service-reports"
-        },
-        {
-          "url": "/dashboard/invoice-bill/total-collection",
-          "name": "Total Collection",
-          "slug": "invoice-bill-total-collection"
-        },
-        {
-          "url": "/dashboard/invoice-bill/opd-invoice",
+          "url": "/dashboard/invoice-bill/opd-invoice/create",
           "name": "OPD Invoice",
           "slug": "invoice-bill-opd-invoice"
         },
         {
-          "url": "/dashboard/invoice-bill/package-invoice",
+          "url": "/dashboard/invoice-bill/package-invoice/create",
           "name": "Package Invoice",
           "slug": "invoice-bill-package-invoice"
         },
         {
-          "url": "/dashboard/invoice-bill/service-bill",
+          "url": "/dashboard/invoice-bill/service-bill/create",
           "name": "Service Bill",
           "slug": "invoice-bill-service-bill"
         }
@@ -142,22 +137,22 @@
       ],
       "submenu": [
         {
-          "url": "/dashboard/lab-test/examination",
+          "url": "/dashboard/lab-test/examinations",
           "name": "Examination Test",
           "slug": "lab-test-examination"
         },
         {
-          "url": "/dashboard/lab-test/hematology",
+          "url": "/dashboard/lab-test/haematology-test",
           "name": "Hematologi Test",
           "slug": "lab-test-hematology"
         },
         {
-          "url": "/dashboard/lab-test/manage",
+          "url": "/dashboard/lab-test/tests",
           "name": "Manage Test",
           "slug": "lab-test-manage"
         },
         {
-          "url": "/dashboard/lab-test/microbiology",
+          "url": "/dashboard/lab-test/microbiology-test",
           "name": "Microbiology Test",
           "slug": "lab-test-microbiology"
         },
@@ -167,12 +162,12 @@
           "slug": "lab-test-reports"
         },
         {
-          "url": "/dashboard/lab-test/stain",
+          "url": "/dashboard/lab-test/stain-tests",
           "name": "Stain Test",
           "slug": "lab-test-stain"
         },
         {
-          "url": "/dashboard/lab-test/references",
+          "url": "/dashboard/lab-test/test-references",
           "name": "Test References",
           "slug": "lab-test-references"
         }

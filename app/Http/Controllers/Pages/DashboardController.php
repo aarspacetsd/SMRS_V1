@@ -30,19 +30,33 @@ class DashboardController extends Controller
    */
   public function index()
   {
-    // Dapatkan ID user yang sedang login dan tanggal hari ini.
-    // Menggunakan helper today() lebih direkomendasikan.
-    $userId = Auth::id(); // Auth::id() adalah shortcut untuk Auth::user()->id
+    $user = Auth::user();
+    if (!$user) {
+      // Sebaiknya redirect atau abort, bukan dd() di production
+      return redirect()->route('login')->with('error', 'Anda harus login terlebih dahulu.');
+    }
+
+    // DEFINISIKAN VARIABEL ROLE DAN NAMA
+    $role = $user->getRoleNames()->first() ?? 'Guest';
+    $name = $user->name;
+
     $today = today();
 
-    // Ambil data invoice HARI INI untuk user yang login
-    $invoicesToday = Invoice::where('user_id', $userId)->whereDate('created_at', $today)->get();
+    // --- PERBAIKAN: Gunakan Eager Loading dengan with() ---
+    $invoicesToday = Invoice::where('user_id', $user->id)->whereDate('created_at', $today)->get();
 
-    // Ambil data appointments & OPD Sales untuk HARI INI
-    $appointmentsToday = Appointment::whereDate('appointment_date', $today)->get();
-    $opdsToday = OpdSales::whereDate('created_at', $today)->get();
+    // Memuat relasi patient dan doctor.employee sekaligus
+    $appointmentsToday = Appointment::with(['patient', 'doctor.employee'])
+      ->whereDate('appointment_date', $today)
+      ->get();
 
-    // Hitung total dari koleksi invoice (efisien)
+    // Memuat relasi patient dan doctor.employee sekaligus
+    $opdsToday = OpdSales::with(['patient', 'doctor.employee'])
+      ->whereDate('created_at', $today)
+      ->get();
+    // dd($opdsToday->toArray());
+
+    // Kalkulasi total invoice
     $total = [
       'sub_total'    => $invoicesToday->sum('sub_total'),
       'discount'     => $invoicesToday->sum('discount'),
@@ -50,21 +64,21 @@ class DashboardController extends Controller
       'total_amount' => $invoicesToday->sum('total_amount'),
     ];
 
-    // Hitung total data master (efisien menggunakan count())
+    // Hitung total data master
     $total_patients = Patient::count();
     $total_doctors = Doctor::count();
     $total_tests = Test::count();
-
-    // Hitung data pending
-    // Asumsi: menghitung SEMUA appointment yang pending, tidak hanya hari ini.
     $pending_appointments = Appointment::where('status', 0)->count();
 
 
+    // KIRIM SEMUA VARIABEL KE VIEW
     return view('dashboard', [
+      'role' => $role,
+      'name' => $name,
       'invoices' => $invoicesToday,
       'total' => $total,
-      'appointments' => $appointmentsToday,
-      'opds' => $opdsToday,
+      'appointments' => $appointmentsToday, // Sekarang sudah berisi data relasi
+      'opds' => $opdsToday,                 // Sekarang sudah berisi data relasi
       'total_patients' => $total_patients,
       'total_doctors' => $total_doctors,
       'total_tests' => $total_tests,

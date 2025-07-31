@@ -6,19 +6,29 @@ use Illuminate\Database\Eloquent\Model;
 
 class Appointment extends Model
 {
-	protected $fillable =
-	[
-        'name', 'description', 'time', 'patient_id', 'doctor_id', 'status', 'appointment_date'
-    ];
+  protected $fillable =
+  [
+    'name',
+    'description',
+    'time',
+    'patient_id',
+    'doctor_id',
+    'status',
+    'appointment_date'
+  ];
 
-    public function patient()
-    {
-        return $this->belongsTo('App\Models\Patient');
-    }
+  // PERBAIKAN: Tambahkan properti $casts di sini
+  protected $casts = [
+    'appointment_date' => 'date',
+  ];
 
-    public function doctor()
-    {
-        return $this->belongsTo('App\Models\Doctor');
-    }
-    //
+  public function patient()
+  {
+    return $this->belongsTo('App\Models\Patient');
+  }
+
+  public function doctor()
+  {
+    return $this->belongsTo('App\Models\Doctor');
+  }
 }

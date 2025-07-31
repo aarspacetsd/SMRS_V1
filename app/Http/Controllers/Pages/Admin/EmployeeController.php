@@ -97,7 +97,7 @@ class EmployeeController extends Controller
       $request['working_day'] = implode(',', $request->working_day);
     }
     if ($request->type == 'Doctor') {
-      $request['first_name'] = 'DR.' . $request->first_name;
+      $request['first_name'] = $request->first_name;
     }
     $employee->update($request->all());
     $departments = Department::get();

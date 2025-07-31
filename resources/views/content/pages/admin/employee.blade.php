@@ -169,7 +169,14 @@
                     @foreach ($employees as $employee)
                         <tr>
                             <td>{{ $employee->id }}</td>
-                            <td>{{ $employee->first_name }} {{ $employee->last_name }}</td>
+                            <td>{{ $employee->first_name }} {{ $employee->middle_name }} {{ $employee->last_name }} </td>
+                            {{-- @if ($employee->id == 2)
+                                @php
+                                    // Lebih baik dd seluruh objek untuk melihat semua datanya
+                                    dd($employee->first_name, $employee->middle_name, $employee->last_name);
+                                @endphp
+                            @endif --}}
+
                             <td>{{ $employee->department->name ?? 'Belum ada departemen' }}</td>
                             <td>
                                 @if ($employee->in_time && $employee->out_time)

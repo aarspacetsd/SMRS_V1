@@ -99,7 +99,7 @@
                     doctorForm.querySelector('[name="fee"]').value = doctor.fee || '';
                     doctorForm.querySelector('[name="opd_charge"]').value = doctor.opd_charge || '';
                     doctorForm.querySelector('[name="with_tax"]').checked =
-                    false; // Anda bisa sesuaikan ini jika ada data `with_tax`
+                        false; // Anda bisa sesuaikan ini jika ada data `with_tax`
 
                     bsOffcanvas.show();
                 }
@@ -139,7 +139,18 @@
                             <td>{{ $doctor->id }}</td>
                             <td>
                                 {{ $doctor->employee->first_name ?? '' }}
+                                {{ $doctor->employee->middle_name ?? '' }}
                                 {{ $doctor->employee->last_name ?? 'Data Karyawan Tdk Ditemukan' }}
+                                {{-- @if ($doctor->id == 2)
+                                    @php
+                                        // Lebih baik dd seluruh objek untuk melihat semua datanya
+                                        dd(
+                                            $doctor->employee->first_name,
+                                            $doctor->employee->middle_name,
+                                            $doctor->employee->last_name,
+                                        );
+                                    @endphp
+                                @endif --}}
                             </td>
                             <td>
                                 {{ $doctor->employee->phone ?? '-' }}

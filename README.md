@@ -1,13 +1,12 @@
-# Sistem Manajemen Rumah Sakit (Nama Proyek Anda)
+# Sistem Manajemen Rumah Sakit (SMRS V1)
 
 ![Versi Laravel](https://img.shields.io/badge/Laravel-v12.x-FF2D20?style=for-the-badge&logo=laravel)
 ![Versi PHP](https://img.shields.io/badge/PHP-8.2%2B-777BB4?style=for-the-badge&logo=php)
 [![Lisensi: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
-<!-- Ganti dengan logo Anda jika ada -->
-<!-- <p align="center">
-  <img src="path/to/your/logo.png" alt="Logo Proyek" width="150"/>
-</p> -->
+<p align="center">
+  <img src="img/Dashboaord.png" alt="Logo Proyek" width="400"/>
+</p>
 
 Sistem Manajemen Rumah Sakit (SMRS) ini adalah aplikasi web komprehensif yang dibangun menggunakan Laravel untuk membantu mengelola berbagai aspek operasional klinik atau rumah sakit. Aplikasi ini dirancang untuk mendigitalkan proses, meningkatkan efisiensi, dan menyediakan data yang terpusat untuk pasien, dokter, dan staf administrasi.
 
@@ -136,15 +135,57 @@ Berdasarkan file `composer.json` proyek ini, berikut adalah teknologi dan paket 
 
 ## Tangkapan Layar
 
-<!-- Ganti dengan screenshot aplikasi Anda -->
+### Dashboard
 
-|                                   Halaman Dashboard                                    |                                      Manajemen Pasien                                      |
-| :------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------: |
-| ![Gambar Dashboard](https://placehold.co/600x400/EEE/31343C?text=Screenshot+Dashboard) | ![Gambar Manajemen Pasien](https://placehold.co/600x400/EEE/31343C?text=Screenshot+Pasien) |
+![Gambar Dashboard](img/Dashboaord.png)
 
-|                                 Pembuatan Faktur                                 |                                      Laporan                                       |
-| :------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------: |
-| ![Gambar Faktur](https://placehold.co/600x400/EEE/31343C?text=Screenshot+Faktur) | ![Gambar Laporan](https://placehold.co/600x400/EEE/31343C?text=Screenshot+Laporan) |
+### Modul Admin
+
+|                                  Departemen                                   |                                  Dokter                                   |
+| :---------------------------------------------------------------------------: | :-----------------------------------------------------------------------: |
+| ![Gambar Departemen](img/Admin/Screenshot%20from%202025-08-01%2014-14-43.png) | ![Gambar Dokter](img/Admin/Screenshot%20from%202025-08-01%2014-14-54.png) |
+|                                  **Pegawai**                                  |                                 **Paket**                                 |
+|  ![Gambar Pegawai](img/Admin/Screenshot%20from%202025-08-01%2014-15-05.png)   | ![Gambar Paket](img/Admin/Screenshot%20from%202025-08-01%2014-15-46.png)  |
+|                                  **Layanan**                                  |                                                                           |
+|  ![Gambar Layanan](img/Admin/Screenshot%20from%202025-08-01%2014-16-05.png)   |                                                                           |
+
+### Modul Pasien
+
+|                                   Tabel Pasien                                    |                                Tabel Janji Temu                                 |
+| :-------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------: |
+| ![Gambar Tabel Pasien](img/Patient/Screenshot%20from%202025-08-01%2014-23-38.png) | ![Gambar Janji Temu](img/Patient/Screenshot%20from%202025-08-01%2014-23-47.png) |
+
+### Modul Laporan
+
+|                                   Laporan OPD                                   |                                   Laporan Paket                                   |                                   Laporan Layanan                                   |
+| :-----------------------------------------------------------------------------: | :-------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------: |
+| ![Gambar Laporan OPD](img/Report/Screenshot%20from%202025-08-01%2014-24-22.png) | ![Gambar Laporan Paket](img/Report/Screenshot%20from%202025-08-01%2014-47-15.png) | ![Gambar Laporan Layanan](img/Report/Screenshot%20from%202025-08-01%2014-47-23.png) |
+
+### Modul Faktur / Tagihan
+
+|                                   Laporan Semua Faktur                                    |                                      Faktur OPD                                      |
+| :---------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------: |
+| ![Gambar Laporan Semua Faktur](img/Invoice/Screenshot%20from%202025-08-01%2014-47-50.png) |   ![Gambar Faktur OPD](img/Invoice/Screenshot%20from%202025-08-01%2014-48-12.png)    |
+|                                     **Faktur Paket**                                      |                                 **Tagihan Layanan**                                  |
+|     ![Gambar Faktur Paket](img/Invoice/Screenshot%20from%202025-08-01%2014-48-22.png)     | ![Gambar Tagihan Layanan](img/Invoice/Screenshot%20from%202025-08-01%2014-48-30.png) |
+
+### Modul Tes Lab
+
+|                                   Tes Pemeriksaan                                    |                                    Tes Hematologi                                     |
+| :----------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------: |
+| ![Gambar Tes Pemeriksaan](img/Labtest/Screenshot%20from%202025-08-01%2014-50-13.png) |  ![Gambar Tes Hematologi](img/Labtest/Screenshot%20from%202025-08-01%2014-50-24.png)  |
+|                                  **Manajemen Tes**                                   |                                 **Tes Mikrobiologi**                                  |
+|  ![Gambar Manajemen Tes](img/Labtest/Screenshot%20from%202025-08-01%2014-50-49.png)  | ![Gambar Tes Mikrobiologi](img/Labtest/Screenshot%20from%202025-08-01%2014-51-02.png) |
+|                                   **Laporan Lab**                                    |                                     **Tes Noda**                                      |
+|   ![Gambar Laporan Lab](img/Labtest/Screenshot%20from%202025-08-01%2014-51-11.png)   |     ![Gambar Tes Noda](img/Labtest/Screenshot%20from%202025-08-01%2014-51-21.png)     |
+|                                  **Referensi Tes**                                   |                                                                                       |
+|  ![Gambar Referensi Tes](img/Labtest/Screenshot%20from%202025-08-01%2014-51-31.png)  |                                                                                       |
+
+### Modul Pengaturan
+
+|                                    Manajemen Pengguna                                    |                                    Pengaturan RS                                    |                                    Manajemen Peran                                    |
+| :--------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------: |
+| ![Gambar Manajemen Pengguna](img/Settings/Screenshot%20from%202025-08-01%2014-51-55.png) | ![Gambar Pengaturan RS](img/Settings/Screenshot%20from%202025-08-01%2014-52-06.png) | ![Gambar Manajemen Peran](img/Settings/Screenshot%20from%202025-08-01%2014-52-19.png) |
 
 ---
 
@@ -164,8 +205,8 @@ Ikuti langkah-langkah berikut untuk menjalankan proyek ini di lingkungan lokal A
 1.  **Clone repository ini:**
 
     ```bash
-    git clone [https://github.com/username-anda/nama-repo.git](https://github.com/username-anda/nama-repo.git)
-    cd nama-repo
+    git clone [https://github.com/aarspacetsd/smrs_v1.git](https://github.com/aarspacetsd/smrs_v1.git)
+    cd smrs_v1/SMRS_V1-backend
     ```
 
 2.  **Install dependensi PHP:**

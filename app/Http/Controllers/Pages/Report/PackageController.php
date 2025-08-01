@@ -1,9 +1,10 @@
 <?php
 
+// Namespace ini harus sesuai dengan lokasi file Anda.
+// Jika controller ini untuk manajemen paket, namespace 'Admin' atau 'Package' lebih sesuai daripada 'Report'.
 namespace App\Http\Controllers\Pages\Report;
 
-use App\Http\Controllers\Controller; // Pastikan namespace ini sesuai dengan lokasi file Anda
-
+use App\Http\Controllers\Controller;
 use App\Models\Package;
 use App\Models\Test;
 use Illuminate\Http\Request;
@@ -11,16 +12,24 @@ use Illuminate\Support\Facades\DB;
 
 class PackageController extends Controller
 {
+  public function __construct()
+  {
+    $this->middleware('auth');
+  }
+
   /**
    * Menampilkan daftar semua paket beserta tes yang termasuk.
    */
   public function index()
   {
-    // Eager load relasi 'tests' untuk efisiensi query
+    // Eager loading (with('tests')) adalah cara paling efisien untuk mengambil data
+    // beserta relasinya untuk menghindari masalah N+1 query.
     $packages = Package::with('tests')->get();
-    // --- PERBAIKAN ---
-    // Menghapus filter where('status', 1) karena kolom 'status' tidak ada di tabel 'tests'
+
+    // Mengambil semua data tes untuk ditampilkan di form tambah/edit.
     $tests = Test::get();
+
+    // Mengirim data ke view. Pastikan path view ini benar.
     return view('content.pages.report.packagereport', compact('packages', 'tests'));
   }
 
@@ -29,15 +38,17 @@ class PackageController extends Controller
    */
   public function store(Request $request)
   {
+    // Validasi yang kuat memastikan data yang masuk bersih dan sesuai.
     $request->validate([
       'name' => 'required|string|max:255|unique:packages,name',
       'price' => 'required|numeric|min:0',
       'description' => 'nullable|string',
       'test_ids' => 'required|array',
-      'test_ids.*' => 'exists:tests,id', // Memastikan semua ID tes valid
+      'test_ids.*' => 'exists:tests,id', // Memastikan semua ID tes yang dikirim valid.
     ]);
 
-    // Menggunakan transaksi database untuk memastikan integritas data
+    // Menggunakan transaksi database untuk menjaga integritas data.
+    // Jika salah satu proses gagal, semua akan dibatalkan.
     DB::transaction(function () use ($request) {
       $package = Package::create([
         'name' => $request->name,
@@ -45,7 +56,8 @@ class PackageController extends Controller
         'price' => $request->price,
       ]);
 
-      // Menyinkronkan tes yang dipilih dengan paket menggunakan relasi many-to-many
+      // sync() adalah cara terbaik untuk mengelola relasi many-to-many.
+      // Ini akan secara otomatis menambah/menghapus relasi di tabel pivot.
       $package->tests()->sync($request->test_ids);
     });
 
@@ -54,6 +66,7 @@ class PackageController extends Controller
 
   /**
    * Memperbarui data paket yang ada.
+   * Menggunakan Route Model Binding (Package $package) untuk kode yang lebih bersih.
    */
   public function update(Request $request, Package $package)
   {
@@ -72,7 +85,6 @@ class PackageController extends Controller
         'price' => $request->price,
       ]);
 
-      // Sync akan secara otomatis menambah, menghapus, atau membiarkan tes yang ada
       $package->tests()->sync($request->test_ids);
     });
 
@@ -84,12 +96,15 @@ class PackageController extends Controller
    */
   public function destroy(Package $package)
   {
-    // Cek apakah paket pernah terjual sebelum menghapus
+    // Pengecekan relasi sebelum menghapus adalah praktik yang aman.
     if ($package->packageSales()->exists()) {
       return back()->with('error', 'Paket tidak dapat dihapus karena memiliki riwayat penjualan.');
     }
 
-    $package->delete(); // Ini juga akan menghapus relasi di tabel package_tests
+    // Saat $package dihapus, entri terkait di tabel pivot 'package_test'
+    // akan otomatis terhapus jika Anda menggunakan onDelete('cascade') di migrasi.
+    $package->delete();
+
     return back()->with('success', 'Paket berhasil dihapus.');
   }
 }

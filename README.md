@@ -20,8 +20,7 @@ Sistem Manajemen Rumah Sakit (SMRS) ini adalah aplikasi web komprehensif yang di
 4.  [Tangkapan Layar](#tangkapan-layar)
 5.  [Panduan Instalasi](#panduan-instalasi)
 6.  [Cara Penggunaan](#cara-penggunaan)
-7.  [Berkontribusi](#berkontribusi)
-8.  [Lisensi](#lisensi)
+7.  [Lisensi](#lisensi)
 
 ---
 
@@ -279,18 +278,6 @@ Ikuti langkah-langkah berikut untuk menjalankan proyek ini di lingkungan lokal A
     - **Dokter**:
       - Email: `doctor@example.com`
       - Password: `password`
-
----
-
-## Berkontribusi
-
-Kontribusi Anda sangat kami hargai! Jika Anda ingin berkontribusi, silakan fork repository ini dan buat _pull request_.
-
-1.  Fork Proyek
-2.  Buat Branch Fitur Anda (`git checkout -b fitur/FiturBaru`)
-3.  Commit Perubahan Anda (`git commit -m 'Menambahkan FiturBaru'`)
-4.  Push ke Branch (`git push origin fitur/FiturBaru`)
-5.  Buka sebuah Pull Request
 
 ---
 
